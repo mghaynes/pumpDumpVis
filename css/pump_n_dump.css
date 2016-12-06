@@ -1,0 +1,48 @@
+.xaxis path,
+.xaxis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.xaxis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.yaxis path,
+.yaxis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.yaxis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
+
+.brush .extent {
+  fill-opacity: .2;
+  fill: cornflowerblue;
+  shape-rendering: crispEdges;
+}
+
+.resize path {
+  fill: #666;
+  fill-opacity: .8;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.box-group{
+    stroke: black;
+    stroke-opacity: .8;
+}
+
