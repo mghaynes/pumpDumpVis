@@ -25,13 +25,6 @@ d3.json("/data/stocks.json", function(error, data) {
 
     var minDate = new Date(dateDim.bottom(1)[0].date),
         maxDate = new Date(dateDim.top(1)[0].date)
-    console.log(minDate)
-    console.log(maxDate)
-//     minDate.setDate(minDate.getDate() - 30);
-//     maxDate.setDate(minDate.getDate() + 30);
-//     console.log(minDate)
-//     console.log(maxDate)
-//     console.log(data)
 
     // Create crossfilter filters
     var heatDim = ndx.dimension(function(d){
@@ -75,7 +68,6 @@ d3.json("/data/stocks.json", function(error, data) {
         maxPrice = priceDimension.top(1)[0].price
 
     var heatColorMapping = function(d) {
-//     Good colors: grey #e5e5e5, can do red to grey, grey to green
         if (d === null){
            return d3.scale.linear().domain([0,0]).range(["#e5e5e5", "#e5e5e5"])(d);        
         }
@@ -103,8 +95,7 @@ d3.json("/data/stocks.json", function(error, data) {
       .group(heatGroup)
       .keyAccessor(function(d) { return d.key[0]; })
       .valueAccessor(function(d) { return d.key[1]; })
-      .colorAccessor(function(d) { return d.value.hype; })
-//       .chart.colsLabel(function(d) { return d; });       
+      .colorAccessor(function(d) { return d.value.hype; })  
       .title(function(d) {
         return "Stock: " + idToLabel(d.key[1]) + "\n" +
                "Date: " + parseDate(d.key[0]) + "\n" +
@@ -112,13 +103,9 @@ d3.json("/data/stocks.json", function(error, data) {
                "Hype: " + d.value.hype
         })
       .margins({top: 10, right: 30, bottom: 50, left: 40})
-//       .colors(["#01C62C", "#47FF00", "#8DFF00", "#C2FF00", "#F7FF00", "#FFC100", "#FF7B00", "#FF3400", "#FF0000"])
       .colors(heatColorMapping)
       .calculateColorDomain()      
       .yAxisOnClick(function(d) {
-
-        // console.log(d, idToLabel(d))
-        
         if (selectedStock !== d) {
           stockDim.filterAll()
           stockDim.filter(d)  
@@ -126,6 +113,7 @@ d3.json("/data/stocks.json", function(error, data) {
           var dateDim = ndx.dimension(function(d) {return d.date;})
           var priceGroup = dateDim.group().reduceSum(function(d) {return +d.price})
           var volumeGroup = dateDim.group().reduceSum(function(d) {return d.shareVol})
+          d3.select('#stock_name').text(idToLabel(d))
           d3.select('#hold_price').append('div').attr('id','price_chart')
           d3.select('#hold_volume').append('div').attr('id','volume_chart')
           priceChart = dc.lineChart('#price_chart')
@@ -137,14 +125,11 @@ d3.json("/data/stocks.json", function(error, data) {
             .renderArea(false)
             .brushOn(false)
             .renderDataPoints(true)
-            // .clipPadding(10)
+            .clipPadding(10)
             .yAxisLabel("Price")
-            // .yAxis().ticks(5)
             .dimension(dateDim)
             .group(priceGroup)
             .render()
-          // priceChart.yAxisMax = function() {return priceDimension.filter(d).top(1)}
-
           volumeChart = dc.barChart('#volume_chart')
             .margins({top: 10, right: 30, bottom: 20, left: 70})
             .width(lg_width)
@@ -156,53 +141,16 @@ d3.json("/data/stocks.json", function(error, data) {
             .yAxisLabel("Volume")
             .dimension(dateDim)
             .group(volumeGroup)
-            // .yAxis(function(d) {console.log(d)})
             .render()
-          console.log(volumeChart)
-          // var yAxis = volumeChart.yAxis().tickformat(function(d) {return d.volume/1000 + 'K'})
         }
         else {
           selectedStock = null
-          // d3.select('#price_chart').style('visibility','hidden')
-          // d3.select('#volume_chart').style('visibility','hidden')
+          d3.select('#stock_name').text('')
           d3.select('#price_chart').remove()
           d3.select('#volume_chart').remove()
-
           stockDim.filterAll()
         }
-        
-
-        // console.log(dateChart.filter())
-        // var stockFilter = stockDim.filter(d)
-        // console.log(stockDim)
-        // console.log(stockFilter)
-        // hypeHeatMap.filter(null)
-        // hypeHistogram.filter(null)
-        // priceHistogram.filter(null)
-        // dateChart.filter(null)
-        // ndx.remove();
-        // hypeHeatMap.filter(stockFilter)
-        // hypeHistogram.filter(stockFilter)
-        // priceHistogram.filter(stockFilter)
-        // dateChart.filter(stockFilter)
-        // dc.redrawAll()
-        // var priceChart = dc.lineChart("#price_chart")
-
-        // var dateDim = ndx.dimension(function(d) {return d.date;})
-        // var priceGroup = dateDim.group().reduceSum(function(d) {return d.price})
-        // priceChart
-        //   .width(lg_width)
-        //   .height(100)
-        //   .x(d3.time.scale().domain([minDate, maxDate]))
-        //   .renderArea(true)
-        //   .brushOn(false)
-        //   .renderDataPoints(true)
-        //   .clipPadding(10)
-        //   .yAxisLabel("This is the Y Axis!")
-        //   .dimension(priceDim)
-        //   .group(priceGroup);
-        // chart.render()
-
+        dc.redrawAll()
       })
       .on("renderlet", function(chart) {
           chart.selectAll("g.box-group > rect")
@@ -220,15 +168,12 @@ d3.json("/data/stocks.json", function(error, data) {
                     return parseDate(new Date(label))
                 })
                 .style("text-anchor","end")
-//                 .attr("dx","-2")
-//                 .attr("dy","-.8")
                 .attr("transform", function(d) {
                         var textbox = d3.select(this),
                          x = +textbox.attr("x"),
                          y = +textbox.attr("y") 
                         return "rotate(-45,"+x+","+y+")";
                 })
-//           print_filter("heatDim")
         })
       .on('preRender', function(chart) {
       // try to hide flickering from renderlet
@@ -237,51 +182,22 @@ d3.json("/data/stocks.json", function(error, data) {
       .on('postRender', function(chart) {
       chart.transitionDuration(0);
       }); 
-    console.log(minHype, maxHype)
+
+
     var hypeHistogram = dc.barChart("#hype_histogram")
                           .width(md_width)
                           .dimension(hypeDimension)
                           .group(hypeCountGroup)
-                          .xUnits(function(d) {return 50})                          
+                          .xUnits(function(d) {return 25})                          
                           .x(d3.scale.linear().domain([minHype, maxHype]))
                           .yAxisLabel("Frequency")
                           .xAxisLabel("Hype")
                           .elasticX(true)
                           .elasticY(true)
-//                           .filter(dc.filters.RangedFilter(0, 100))
+    hypeHistogram.xAxisMax = function() { return 1.02 * maxHype }
+    hypeHistogram.xAxisMin = function() { return .98 * minHype }
 
 
-    // hypeHistogram.xAxisMax = function() {return maxHype}
-    // hypeHistogram.xAxisMin = function() {return minHype}
-    // Use below if want elastic X axis (but messes up sliding window ability)     
-//     hypeHistogram.xAxisMax = function() {
-//         hypeFilter = hypeHistogram.filter()
-//         console.log(hypeFilter)
-//         if (hypeFilter === null) {
-//             return 105
-//         } else {
-//             return (+hypeFilter[1] + 5)
-//         }
-//     }
-//     hypeHistogram.xAxisMin = function() {
-//         hypeFilter = hypeHistogram.filter()
-//         console.log(hypeFilter)
-//         if (hypeFilter === null) {
-//             return -5
-//         } else {
-//             return (+hypeFilter[0] - 5)
-//         }
-//     }
-
-    hypeHistogram.xAxisMax = function() {
-                                if (hypeHistogram.filter() != null) {
-                                  return +hypeHistogram.filter()[1]
-                                } 
-                                else {
-                                  return maxHype
-                                }
-                                
-                            }
     var priceHistogram = dc.barChart("#price_histogram")
                           .width(md_width)
                           .dimension(priceDimension)
@@ -292,39 +208,9 @@ d3.json("/data/stocks.json", function(error, data) {
                           .xAxisLabel("Price")
                           .elasticX(true)
                           .elasticY(true)
-                          // .on("renderlet", function(chart) {
-                          //   if (chart.filter() != null) {
-                          //     dc.events.trigger(function(){
-                          //       hypeHistogram.focus(chart.filter());
-                          //     })
-                          //   } else {
-                          //     dc.events.trigger(function(){
-                          //       hypeHistogram.focus(chart.filterAll());
-                          //     })
-                          //   }
+    priceHistogram.xAxisMax = function() { return 1.05 * maxPrice }
+    priceHistogram.xAxisMin = function() { return -0.005 }
 
-                          // })
-                             // if (chart.filter() != null) {
-                             //   chart.xAxisMax = function() {return +chart.filter()[1]}
-                             //   chart.xAxisMin = function() {return +chart.filter()[0]}
-                               // chart.xAxisMax = function() {return maxPrice}
-                               // chart.xAxisMin = function() {return 0}
-                               // chart.filterAll()
-//                            })
-//                               dc.events.trigger(function(){
-                            // focus some other chart to the range selected by user on this chart
-//                               hypeHistogram.focus(chart.filter());
-//                               })
-    priceHistogram.xAxisMax = function() {
-                                if (priceHistogram.filter() != null) {
-                                  return +priceHistogram.filter()[1]
-                                } 
-                                else {
-                                  return maxPrice
-                                }
-                                
-                            }
-    // priceHistogram.xAxisMin = function() {return -.05}
     
     var dateChart = dc.barChart("#date_chart")
                       .margins({top: 10, right: 30, bottom: 20, left: 70})
@@ -333,27 +219,9 @@ d3.json("/data/stocks.json", function(error, data) {
                       .group(dateSumGroup)
                       .x(d3.time.scale().domain([minDate,maxDate]))
                       .yAxisLabel("Cumulative Hype")
-//                       .xAxisLabel("Price")
-                      // .elasticX(true)
                       .elasticY(true)
                       .on("renderlet", function(chart) {
                           dc.events.trigger(function(){
-//                             console.log(chart.filter())
-//                             console.log(hypeHeatMap)
-//                             console.log(hypeHistogram)
-//                             range = chart.filter()
-//                             console.log(range)
-//                             chart.xAxisMax = function() {return new Date().setDate(chart.filter()[1].getDate() + 3);}
-//                             print_filter(dateDim)
-//                             filter = get_filter_data(dateDim)
-//                             maxHype = Math.max.apply(Math, filter.map(function(o){return o.hype;})) + 1
-//                             minHype = Math.min.apply(Math, filter.map(function(o){return o.hype;})) - 1
-// 
-//                             console.log(filter)
-//                             console.log(minHype, maxHype)
-                        // focus some other chart to the range selected by user on this chart
-//                           hypeHistogram.focus([minHype, maxHype]);
-//                             hypeHistogram.x(d3.scale.linear().domain([minHype, maxHype])).xAxis()
                           })
                     })
     dateChart.xAxisMax = function() {return new Date(maxDate).setDate(maxDate.getDate() + 3);}
@@ -361,22 +229,6 @@ d3.json("/data/stocks.json", function(error, data) {
 
 
     dc.renderAll();
-
-    function get_filter_data(filter){
-        var f=eval(filter);
-        if (typeof(f.length) != "undefined") {}else{}
-        if (typeof(f.top) != "undefined") {f=f.top(Infinity);}else{}
-        if (typeof(f.dimension) != "undefined") {f=f.dimension(function(d) { return "";}).top(Infinity);}else{}
-        return (f)
-    } //end function get_filter_data
-
-    function print_filter(filter){
-        var f=eval(filter);
-        if (typeof(f.length) != "undefined") {}else{}
-        if (typeof(f.top) != "undefined") {f=f.top(Infinity);}else{}
-        if (typeof(f.dimension) != "undefined") {f=f.dimension(function(d) { return "";}).top(Infinity);}else{}
-        console.log(filter+"("+f.length+") = "+JSON.stringify(f).replace("[","[\n\t").replace(/}\,/g,"},\n\t").replace("]","\n]"));
-    } //end function print_filter 
 }); //end d3.json function
 
 parseDate = d3.time.format("%m/%d/%y")
