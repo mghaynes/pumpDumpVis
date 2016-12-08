@@ -72,13 +72,13 @@ d3.json("/data/stocks.json", function(error, data) {
            return d3.scale.linear().domain([0,0]).range(["#e5e5e5", "#e5e5e5"])(d);        
         }
         if (d < 0) {
-            return d3.scale.linear().domain([minHype, 0]).range(["#ffe5e2", "red"])(d);
+            return d3.scale.linear().domain([minHype, 0]).range(["green", "#e2ffe9"])(d);
         }
         else if (d === 0) {
           return d3.scale.linear().domain([0, 0]).range(["#addfff", "#addfff"])(d);
         }
         else {
-            return d3.scale.linear().domain([0, maxHype]).range(["green", "#e2ffe9"])(d);
+            return d3.scale.linear().domain([0, maxHype]).range(["#ffe5e2", "red"])(d);
         }
     };
     heatColorMapping.domain = function() {
@@ -90,7 +90,7 @@ d3.json("/data/stocks.json", function(error, data) {
 
     hypeHeatMap
       .width(lg_width)
-      .height(45 * 5 + 40)
+      .height(275)
       .dimension(heatDim)
       .group(heatGroup)
       .keyAccessor(function(d) { return d.key[0]; })
@@ -102,7 +102,7 @@ d3.json("/data/stocks.json", function(error, data) {
                "Price: $" + d.value.price + "\n" +
                "Hype: " + d.value.hype
         })
-      .margins({top: 10, right: 30, bottom: 50, left: 40})
+      .margins({top: 10, right: 30, bottom: 40, left: 40})
       .colors(heatColorMapping)
       .calculateColorDomain()      
       .yAxisOnClick(function(d) {
@@ -183,12 +183,13 @@ d3.json("/data/stocks.json", function(error, data) {
       chart.transitionDuration(0);
       }); 
 
-
+    var slider_chart_height = 160
     var hypeHistogram = dc.barChart("#hype_histogram")
                           .width(md_width)
+                          .height(slider_chart_height)
                           .dimension(hypeDimension)
                           .group(hypeCountGroup)
-                          .xUnits(function(d) {return 25})                          
+                          .xUnits(function(d) {return 50})                          
                           .x(d3.scale.linear().domain([minHype, maxHype]))
                           .yAxisLabel("Frequency")
                           .xAxisLabel("Hype")
@@ -200,6 +201,7 @@ d3.json("/data/stocks.json", function(error, data) {
 
     var priceHistogram = dc.barChart("#price_histogram")
                           .width(md_width)
+                          .height(slider_chart_height)
                           .dimension(priceDimension)
                           .group(priceCountGroup)
                           .xUnits(function(d) {return 50})
@@ -215,6 +217,7 @@ d3.json("/data/stocks.json", function(error, data) {
     var dateChart = dc.barChart("#date_chart")
                       .margins({top: 10, right: 30, bottom: 20, left: 70})
                       .width(lg_width)
+                      .height(slider_chart_height)
                       .dimension(dateDim)
                       .group(dateSumGroup)
                       .x(d3.time.scale().domain([minDate,maxDate]))
