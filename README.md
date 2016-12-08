@@ -19,9 +19,9 @@ Once the server is running, open a web browser and go to localhost:8000. You sho
 
 4. The filters are cumulative. To see this, use the date filter to select date ranges from April 23 - July 15. Then, select hype scores greater than 0. Finally, select prices between $0.13-$0.19. Only 2 data points meet this criteria, and your visualization should look like the image below. ![alt text][all_filters_example] When done, clear each filter. Your visualization should revert to the base visualization (see step 1 image)
 
-5. You can select individual stocks, to see their price and volume history. The previous example showed the 'CYNK' might be an interesting stock to look at. Click on the ticker 'CYNK' on the heat map. The visualization now shows the price and volume history of 'CYNK' below the heat map (see image below). ![alt text][pump_dump_example] Click on several other stocks to see their price and volume history. When done, click on the last selected stock again to clear the filter. Your image should revert to the base image (see step 1 image).
+5. You can select individual stocks, to see their price and volume history. The previous example showed the 'CYNK' might be an interesting stock to look at. Click on the ticker 'CYNK' on the heat map. The visualization now shows the price and volume history of 'CYNK' below the heat map (see image below). Notice that on Jun 8-9, there is an increase in hype. At the same time, there is a corresponding jump in both price and volume. This is a classic pump and dump pattern! Congratulations. You just found your first pump and dump candidate! Click on several other stocks to see their price and volume history. Do you see any other pump and dump candidates? ![alt text][pump_dump_example]  When done, click on the last selected stock again to clear the filter. Your image should revert to the base image (see step 1 image).
 
-
+6. This completes a brief demo/tutorial of our visualization. Have fun with it and see how many pump and dump stocks you can find!
 
 ## How to Use the Visualization
 
