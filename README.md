@@ -39,4 +39,6 @@ We pulled financial stock data and twitter data separately. In addition, we crea
 ```
 python mergedata.py
 ```
+Once complete, you'll need to remove the resulting 'stocks.json' file to the data subdirectory.
+
 ###### Have questions or want to contribute to this visualization? Email me at mghaynes@gatech.edu. 
