@@ -47,7 +47,7 @@ python mergedata.py
 Once complete, you'll need to remove the resulting 'stocks.json' file to the data subdirectory.
 
 ###### Have questions or want to contribute to this visualization? Email me at mghaynes@gatech.edu. 
-[pump_dump_vis]: https://github.com/mghaynes/images/pump_dump_vis.png "Pump and dump interactive visualization"
+[pump_dump_vis]: https://github.com/mghaynes/raw/master/src/images/pump_dump_vis.png "Pump and dump interactive visualization"
 [date_slider_example]: https://github.com/mghaynes/images/april10-jul24.png "Date slider example (Apr 10 - Jul 24)"
 [all_sliders_example]: https://github.com/mghaynes/images/all_selectors.png "Example showing slider filters are cumulative"
 [neg_hype_example]: https://github.com/mghaynes/images/just.png "Example using hype slider to show only negative hype"
