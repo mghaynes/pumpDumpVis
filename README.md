@@ -1,12 +1,17 @@
 # Pump and Dump Interactive Visualization
 Team 3, CSE6242 (Data and Visual Analytics)
 
+## Quick Start
 This visualization uses JavaScript. Therefore, you will need an http server to see it. Some of the packages used in the visualization are downloaded from a CDN, so you will also need internet access. A quick way to get the visualization running is to first clone the git repo. Then, in the local directory that contains the repo, run the followg command:
 ```
 python -m SimpleHTTPServer
 ```
 
 Once the server is running, open a web browser and go to localhost:8000. You should see the visualization.
+
+## Quick Demo
+
+![alt text][pump_dump_vis]
 
 ## How to Use the Visualization
 
@@ -42,3 +47,8 @@ python mergedata.py
 Once complete, you'll need to remove the resulting 'stocks.json' file to the data subdirectory.
 
 ###### Have questions or want to contribute to this visualization? Email me at mghaynes@gatech.edu. 
+[pump_dump_vis]: https://github.com/mghaynes/images/pump_dump_vis.png "Pump and dump interactive visualization"
+[date_slider_example]: https://github.com/mghaynes/images/april10-jul24.png "Date slider example (Apr 10 - Jul 24)"
+[all_sliders_example]: https://github.com/mghaynes/images/all_selectors.png "Example showing slider filters are cumulative"
+[neg_hype_example]: https://github.com/mghaynes/images/just.png "Example using hype slider to show only negative hype"
+[pump_dump_example]: https://github.com/mghaynes/images/example_pump_dump.png "Example of a potential pump and dump stock"
