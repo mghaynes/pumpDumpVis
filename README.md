@@ -2,7 +2,7 @@
 Team 3, CSE6242 (Data and Visual Analytics)
 
 ## Quick Start
-This visualization uses JavaScript. Therefore, you will need an http server to see it. Some of the packages used in the visualization are downloaded from a CDN, so you will also need internet access. A quick way to get the visualization running is to first clone the git repo. Then, in the local directory that contains the repo, run the followg command:
+This visualization uses JavaScript. Therefore, you will need an http server to see it. Some of the packages used in the visualization are downloaded from a CDN, so you will also need internet access. A quick way to get the visualization running is to first clone the git repo. Then, in the local directory that contains the repo, run the following command:
 ```
 python -m SimpleHTTPServer
 ```
