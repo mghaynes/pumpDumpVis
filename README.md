@@ -33,28 +33,28 @@ The heat map is the main visualizaiton. The y-axis is a list of stocks, the x-ax
 #### Semantic Zoom
 The user can select a stock of interest on the heat map by clicking on the stock ticker. Doing so greys out the other stocks on the chart, leaving only the coloring for the selected stock visible. In addition, selecting a stock creates a price and volume chart for the selected stock beneath the heat map. Only one stock at a time can be selected. To show all stocks again, simply click on the ticker of the currently displayed stock a second time.
 
-### Slider Charts
+### Selector Charts
 There are three slider charts: date slider, hype slider, and price slider.
 
-The date slider allows the user to select a specific date range of interest. The user simply clicks on the first date of interest and drags to the last date of interest. This creates a brush effect showing which dates are selected. On the heat map, unselected dates are greyed out. On the hype and price slider, values not present in the date range are removed.
+The date selector allows the user to select a specific date range of interest. The user simply clicks on the first date of interest and drags to the last date of interest. This creates a brush effect showing which dates are selected. On the heat map, unselected dates are greyed out. On the hype and price selector, values not present in the date range are removed.
 
-The hype slider and price slider work in a similar vane to the date slider. These sliders allow the user to select hype range or price range of interest and see only stocks that match that criteria colored on the heat map. For example, if the user only wants to see stocks with positive hype, the user merely selects stocks with hype greater than 0 using the hype slider.
+The hype selector and price selector work in a similar vane to the date selector. These selectors allow the user to select hype range or price range of interest and see only stocks that match that criteria colored on the heat map. For example, if the user only wants to see stocks with positive hype, the user merely selects stocks with hype greater than 0 using the hype selector.
 
 #### Date Chart
-In addition to being a slider, the y-axis on the date chart shows cumulative hype by day. The resulting spike chart allows the user to see at a glance general trends for hype. For example, a wide spread pump and dump scheme involving multiple stocks would cause the cumulative hype score to spike, thus visually indicating an area of interest for an analyst.
+In addition to being a selector, the y-axis on the date chart shows cumulative hype by day. The resulting spike chart allows the user to see at a glance general trends for hype. For example, a wide spread pump and dump scheme involving multiple stocks would cause the cumulative hype score to spike, thus visually indicating an area of interest for an analyst.
 
 #### Hype Chart
-In addition to being a slider, the y-axis on the date chart shows a hype histogram. 
+In addition to being a selector, the y-axis on the date chart shows a hype histogram. 
 
 #### Price Chart
-In addition to being a slider, the y-axis on the price chart shows a price histogram. 
+In addition to being a selector, the y-axis on the price chart shows a price histogram. 
 
 ## Updating Stock Data
 We pulled financial stock data and twitter data separately. In addition, we created a financial file for each stock and a hype file for each stock. We use a script to merge these disparate files. To merge them, put all the hype related files in a folder named 'hype'. Put all the stock data in a folder named 'stocks'. Then run the merge code with the following command:
 ```
 python mergedata.py
 ```
-Once complete, you'll need to remove the resulting 'stocks.json' file to the data subdirectory.
+Once complete, you'll need to move the resulting 'stocks.json' file to the data subdirectory.
 
 ###### Have questions or want to contribute to this visualization? Email me at mghaynes@gatech.edu. 
 [pump_dump_vis]: https://github.com/mghaynes/pumpDumpVis/blob/master/images/pump_dump_vis.png "Pump and dump interactive visualization"
