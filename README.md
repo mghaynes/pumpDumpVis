@@ -10,8 +10,13 @@ python -m SimpleHTTPServer
 Once the server is running, open a web browser and go to localhost:8000. You should see the visualization.
 
 ## Quick Demo
-
+1. Start the visualization. The visualization should look like the below image:
 ![alt text][pump_dump_vis]
+
+2. Use the date range slider to view stocks from April 10 - Jul 24. Do this by clicking and holding in the date chart above April 10. Now drag the mouse until just above Jul 24. Releast the mouse button. The visualization should look like the image below. ![alt text][date_slider_example] To revert to the base visualization, click anywhere in the date chart outside of the selected range. Your image should revert to the base visualization (see image 1 above)
+
+
+
 
 ## How to Use the Visualization
 
@@ -48,7 +53,7 @@ Once complete, you'll need to remove the resulting 'stocks.json' file to the dat
 
 ###### Have questions or want to contribute to this visualization? Email me at mghaynes@gatech.edu. 
 [pump_dump_vis]: https://github.com/mghaynes/pumpDumpVis/blob/master/images/pump_dump_vis.png "Pump and dump interactive visualization"
-[date_slider_example]: https://github.com/mghaynes/images/april10-jul24.png "Date slider example (Apr 10 - Jul 24)"
+[date_slider_example]: https://github.com/mghaynes/pumpDumpVis/blob/master/images/april10-jul24.png "Date slider example (Apr 10 - Jul 24)"
 [all_sliders_example]: https://github.com/mghaynes/images/all_selectors.png "Example showing slider filters are cumulative"
 [neg_hype_example]: https://github.com/mghaynes/images/just.png "Example using hype slider to show only negative hype"
 [pump_dump_example]: https://github.com/mghaynes/images/example_pump_dump.png "Example of a potential pump and dump stock"
