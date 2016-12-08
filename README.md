@@ -13,8 +13,13 @@ Once the server is running, open a web browser and go to localhost:8000. You sho
 1. Start the visualization. The visualization should look like the below image:
 ![alt text][pump_dump_vis]
 
-2. Use the date range slider to view stocks from April 10 - Jul 24. Do this by clicking and holding in the date chart above April 10. Now drag the mouse until just above Jul 24. Releast the mouse button. The visualization should look like the image below. ![alt text][date_slider_example] To revert to the base visualization, click anywhere in the date chart outside of the selected range. Your image should revert to the base visualization (see image 1 above)
+2. Use the date range filter to view stocks from April 10 - Jul 24. Do this by clicking and holding in the date chart above April 10. Now drag the mouse until just above Jul 24. Release the mouse button. The visualization should look like the image below. ![alt text][date_slider_example] To revert to the base visualization, click anywhere in the date chart outside of the selected range. Your image should revert to the base visualization (see step 1 image)
 
+3. Use the hype filter to select stocks with negative hype. Do this by clicking and holding in the hype chart above and just to the left of 0. Drag the mouse to the leftmost edge of the chart. Release the mouse button. The visualization should look like the image below.  ![alt text][neg_hype_example] To revert to the base visualization, click anywhere in the date chart outside of the selected range. Your image should revert to the base visualization (see step 1 image)
+
+4. The filters are cumulative. To see this, use the date filter to select date ranges from April 23 - July 15. Then, select hype scores greater than 0. Finally, select prices between $0.13-$0.19. Only 2 data points meet this criteria, and your visualization should look like the image below. [alt text][all_filters_example] When done, clear each filter. Your visualization should revert to the base visualization (see step 1 image)
+
+5. You can select individual stocks, to see their price and volume history. The previous example showed the 'CYNK' might be an interesting stock to look at. Click on the ticker 'CYNK' on the heat map. The visualization now shows the price and volume history of 'CYNK' below the heat map (see image below). [alt text][pump_dump_example] Click on several other stocks to see their price and volume history. When done, click on the last selected stock again to clear the filter. Your image should revert to the base image (see step 1 image).
 
 
 
@@ -53,7 +58,7 @@ Once complete, you'll need to remove the resulting 'stocks.json' file to the dat
 
 ###### Have questions or want to contribute to this visualization? Email me at mghaynes@gatech.edu. 
 [pump_dump_vis]: https://github.com/mghaynes/pumpDumpVis/blob/master/images/pump_dump_vis.png "Pump and dump interactive visualization"
-[date_slider_example]: https://github.com/mghaynes/pumpDumpVis/blob/master/images/april10-jul24.png "Date slider example (Apr 10 - Jul 24)"
-[all_sliders_example]: https://github.com/mghaynes/images/all_selectors.png "Example showing slider filters are cumulative"
-[neg_hype_example]: https://github.com/mghaynes/images/just.png "Example using hype slider to show only negative hype"
-[pump_dump_example]: https://github.com/mghaynes/images/example_pump_dump.png "Example of a potential pump and dump stock"
+[date_slider_example]: https://github.com/mghaynes/pumpDumpVis/blob/master/images/april10-jul24.png "Date filter example (Apr 10 - Jul 24)"
+[neg_hype_example]: https://github.com/mghaynes/pumpDumpVis/blob/master/images/just%20negative%20hype.png "Example using hype filter to show only negative hype"
+[all_filters_example]: https://github.com/mghaynes/pumpDumpVis/blob/master/images/all_selectors.png "Example showing slider filters are cumulative"
+[pump_dump_example]: https://github.com/mghaynes/pumpDumpVis/blob/master/images/example_pump_dump.png "Example of a potential pump and dump stock"
